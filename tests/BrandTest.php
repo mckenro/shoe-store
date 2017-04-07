@@ -18,15 +18,15 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
   function test_save()
   {
-    $newBrand = new Brand ("supershoes");
+    $newBrand = new Brand ("Super Shoes");
     $newBrand->save();
     $result = Brand::getAll();
-    $this->assertEquals($result, [$newBrand]);
+    $this->assertEquals([$newBrand], $result);
   }
 
   function test_deleteAll()
   {
-    $newBrand = new Brand ("supershoes");
+    $newBrand = new Brand ("Super Shoes");
     $newBrand->save();
     Brand::deleteAll();
     $result = Brand::getAll();
@@ -35,12 +35,48 @@ class BrandTest extends PHPUnit_Framework_TestCase
 
   function test_getAll()
   {
-    $newBrand = new Brand ('supershoes');
-    $newBrand2 = new Brand ('shoemax');
+    $newBrand = new Brand ('Super Shoes');
+    $newBrand2 = new Brand ('Shoe Max');
     $newBrand->save();
     $newBrand2->save();
     $result = Brand::getAll();
     $this->assertEquals($result, [$newBrand, $newBrand2] );
+  }
+
+  function test_addStore()
+  {
+    $brand_name = "Super Shoes";
+    $test_brand = new Brand($brand_name);
+    $test_brand->save();
+
+    $store_name = "Wal Mart";
+    $test_store = new Store($store_name);
+    $test_store->save();
+
+    $test_brand->addStore($test_store);
+
+    $this->assertEquals($test_brand->getStores(), [$test_store]);
+  }
+
+  function test_getStores()
+  {
+    $brand_name = "Super Shoes";
+    $test_brand = new Brand($brand_name);
+    $test_brand->save();
+
+    $store_name = "Wal Mart";
+    $test_store = new Store($store_name);
+    $test_store->save();
+
+    $store_name2 = "Nordstrom";
+    $test_store2 = new Store($store_name);
+    $test_store2->save();
+
+    $test_brand->addStore($test_store);
+    $test_brand->addStore($test_store2);
+
+    $this->assertEquals($test_brand->getStores(), [$test_store, $test_store2]);
+
   }
 }
 
