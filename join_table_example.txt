@@ -1,0 +1,38 @@
+stores
+-------
+
+ id | store_name
+ ---+------------
+ 1  | Wal-Mart
+ 2  | Sears
+ 3  | Target
+
+
+brands
+------
+
+ id | brand_name
+ ---+---------------
+ 1  | Nike
+ 2  | Adidas
+ 3  | New Balance
+
+
+brands_stores (join table)
+--------------
+
+ id | brand_id | store_id
+ ---+----------+----------
+ 1  | 1        | 1
+ 2  | 1        | 2
+ 3  | 2        | 3
+ 4  | 2        | 1
+
+ Find which brands belong to store-one.
+
+ SELECT brands.* FROM
+stores JOIN brands_stores ON (stores.id = brands_stores.store_id)
+        JOIN brands ON (brands_stores.brand_id = brands.id)
+WHERE stores.id = 1;
+
+ Sometimes it is easiest to look at join statements backwards. We want our results to be centered around whatever store has an id = 1. So we are asking the database to look at the stores table and the brands_stores table together and return any entries where stores.id is the same as brands_stores.store_id, or in our case, where the store_id value in the brands_stores table is 1. Just by looking at the brands_stores table, we can see that there are two entries where store_id is 1. Then we are asking the database to use those two entries, look at whatever the brand_id is for those two entries (in this case 1 and 2), and then find those same numbers in the brands table (brand-one and brand-two) and return all (*) information about those brands.
