@@ -93,7 +93,7 @@
         if (!$executed) {
           return false;
         }
-        $executed = $GLOBALS['DB']->exec("DELETE FROM stores_stores WHERE store_id = {$this->getId()};");
+        $executed = $GLOBALS['DB']->exec("DELETE FROM brands_stores WHERE store_id = {$this->getId()};");
       }
     }
 
