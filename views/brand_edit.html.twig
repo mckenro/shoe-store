@@ -7,7 +7,7 @@
       <h5>The brand {{ brands.getName }} is currently available at the following stores:</h5>
       <ul>
         {% for store in stores %}
-        <li><a href="/store_edit/{{ store.getId }}">{{ stores.getName }}</a></li>
+        <li><a href="/store_edit/{{ store.getId }}">{{ store.getName }}</a></li>
         {% endfor %}
     {% endif %}
   </div>
@@ -34,18 +34,13 @@
   <div class = "col-md-6">
   </div>
   <div class = "col-md-6">
-    <form action="/add_store" method="post">
+    <form action="/brand_edit/{{ brands.getId }}" method="post">
       <div class = "form-group">
-        <label for="store">Add New Store</label>
-        <input class="form-control" placeholder="New Store Name" type='text' name="store" id='store'>
+        <label for="store_add">Add New Store For This Brand</label>
+        <input class="form-control" placeholder="New Store Name" type='text' name="store_add" id='store_add'>
       </div>
       <div class = "form-group">
         <button class="btn btn-primary" type="submit">Add Store For This Brand</button>
-      </div>
-    </form>
-    <form action="/delete_stores" method="post">
-      <div class = "form-group">
-        <button class="btn btn-danger" type="submit">Remove All Stores</button>
       </div>
     </form>
     <h3><a href="/">Return Home</a></h3>

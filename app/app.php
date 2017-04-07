@@ -94,9 +94,25 @@
 
   $app->post("/brand_edit/{id}", function($id) use ($app) {
     $current_brand = Brand::find($id);
-    $new_store = $_POST['add_store'];
+    $new_store = new Store($_POST['store_add']);
+    $new_store->save();
     $current_brand->addStore($new_store);
+
+    $brand_stores = $current_brand->getStores();
     return $app['twig']->render('brand_edit.html.twig', array('brands' => $current_brand, 'stores' => $brand_stores));
+  });
+
+  // ---------------------------------------
+  // add brand(s) to store below this line
+
+  $app->post("/store_edit/{id}", function($id) use ($app) {
+    $current_store = Store::find($id);
+    $new_brand = new Brand($_POST['add_brand']);
+    $new_brand->save();
+    $current_store->addBrand($new_brand);
+
+    $store_brands = $current_store->getBrands();
+    return $app['twig']->render('store_edit.html.twig', array('stores' => $current_store, 'brands' => $store_brands));
   });
 
 

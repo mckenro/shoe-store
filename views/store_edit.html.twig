@@ -34,18 +34,13 @@
   <div class = "col-md-6">
   </div>
   <div class = "col-md-6">
-    <form action="/brands" method="post">
+    <form action="/store_edit/{{ stores.getId }}" method="post">
       <div class = "form-group">
-        <label for="brand">Add New Brand</label>
-        <input class="form-control" placeholder="New Brand Name" type='text' name="brand" id='brand'>
+        <label for="add_brand">Add New Brand</label>
+        <input class="form-control" placeholder="New Brand Name" type='text' name="add_brand" id='add_brand'>
       </div>
       <div class = "form-group">
         <button class="btn btn-primary" type="submit">Add Brand For This Store</button>
-      </div>
-    </form>
-    <form action="/delete_brands" method="post">
-      <div class = "form-group">
-        <button class="btn btn-danger" type="submit">Remove All Brands</button>
       </div>
     </form>
     <h3><a href="/">Return Home</a></h3>
