@@ -20,6 +20,14 @@ _Starting files and directory structure for php projects. See the composer.json 
 * _User can view a specific "brand" and see all the "stores" that carry that "brand"._
 * _User can create, read, update, and delete "brands" and "stores" including the ability to perform these operations on all and singular "stores" and "brands"_
 
+## SQL Commands for the databases
+* _CREATE DATABASE shoes;_
+* _USE shoes;_
+* _CREATE TABLE stores (id serial PRIMARY KEY, store_name VARCHAR (255));_
+* _CREATE TABLE brands (id serial PRIMARY KEY, brand_name VARCHAR (255));_
+* _CREATE TABLE brands_stores (id serial PRIMARY KEY, brand_id INT, store_id INT);_
+* _Use phpmyadmin to create a copy called shoes_test_
+
 ## Known Bugs
 
 _No known bugs,_

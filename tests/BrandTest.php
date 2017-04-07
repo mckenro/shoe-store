@@ -4,9 +4,10 @@
 * @backupStaticAttributes disabled
 */
 
-$DB = new PDO('mysql:host=localhost:8889;dbname=shoe_store_test', "root", "root");
+$DB = new PDO('mysql:host=localhost:8889;dbname=shoes_test', "root", "root");
 require_once "src/Store.php";
 require_once "src/Brand.php";
+
 class BrandTest extends PHPUnit_Framework_TestCase
 {
   protected function tearDown()
@@ -14,35 +15,33 @@ class BrandTest extends PHPUnit_Framework_TestCase
     Brand::deleteAll();
     Store::deleteAll();
   }
-  function test_Save()
+
+  function test_save()
   {
-    $newClass = new Brand ("max", "blue");
-    $newClass->save();
+    $newBrand = new Brand ("supershoes");
+    $newBrand->save();
     $result = Brand::getAll();
-    $this->assertEquals($result, [$newClass]);
+    $this->assertEquals($result, [$newBrand]);
   }
+
   function test_deleteAll()
   {
-    $newClass = new Brand ("max","blue");
-    $newClass->save();
+    $newBrand = new Brand ("supershoes");
+    $newBrand->save();
     Brand::deleteAll();
     $result = Brand::getAll();
     $this->assertEquals($result, []);
   }
+
   function test_getAll()
   {
-    $newClass = new Brand ('max', 'blue');
-    $newClass2 = new Brand ('jack', "black");
-    $newClass->save();
-    $newClass2->save();
+    $newBrand = new Brand ('supershoes');
+    $newBrand2 = new Brand ('shoemax');
+    $newBrand->save();
+    $newBrand2->save();
     $result = Brand::getAll();
-    $this->assertEquals($result, [$newClass, $newClass2] );
+    $this->assertEquals($result, [$newBrand, $newBrand2] );
   }
 }
-
-
-
-
-
 
 ?>

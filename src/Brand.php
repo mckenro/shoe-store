@@ -1,40 +1,33 @@
 <?php
   class Brand
 {
-    private $name;
-    private $color;
+    private $brand_name;
     private $id;
 
-
-    function __construct($name, $color, $id=null)
+    function __construct($brand_name, $id=null)
       {
-        $this->name =$name;
-        $this->color =$color;
+        $this->brand_name = $brand_name;
         $this->id = $id;
       }
+
       function getName()
       {
-        return $this->name;
+        return $this->brand_name;
       }
+
       function setName($new_name)
       {
-         $this->name = $new_name;
+         $this->brand_name = $new_name;
       }
-      function getColor()
-      {
-        return $this->color;
-      }
-      function setColor($new_color)
-      {
-         $this->color = $new_color;
-      }
+
       function getId()
       {
         return $this->id;
       }
+
       function save()
       {
-        $executed = $GLOBALS['DB']->exec("INSERT INTO class (name, color) VALUES ('{$this->getName()}', '{$this->getColor()}'); ");
+        $executed = $GLOBALS['DB']->exec("INSERT INTO brands (brand_name) VALUES ('{$this->getName()}'); ");
           if($executed){
             $this->id = $GLOBALS['DB']->lastInsertId();
             return true;
@@ -42,19 +35,21 @@
           return false;
           }
       }
-    static function getAll()
+
+      static function getAll()
       {
-        $classes = array();
-        $returned_classes = $GLOBALS['DB']->query('SELECT * FROM class;');
-        foreach($returned_classes as $class){
-          $newClass = new Brand($class['name'], $class["color"],  $class["id"]);
-          array_push($classes, $newClass);
+        $brands = array();
+        $returned_brands = $GLOBALS['DB']->query('SELECT * FROM brands;');
+        foreach($returned_brands as $brand){
+          $newBrand = new Brand($brand['brand_name'], $brand["id"]);
+          array_push($brands, $newBrand);
         }
-          return $classes;
+          return $brands;
       }
+
       static function deleteAll()
       {
-        $deleteAll = $GLOBALS['DB']->exec("DELETE FROM class;");
+        $deleteAll = $GLOBALS['DB']->exec("DELETE FROM brands;");
         if ($deleteAll)
         {
           return true;
