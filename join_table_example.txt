@@ -28,7 +28,9 @@ brands_stores (join table)
  3  | 2        | 3
  4  | 2        | 1
 
- Find which brands belong to store-one.
+
+
+ Find which brands belong to Wal-Mart.
 
  SELECT brands.* FROM
 stores JOIN brands_stores ON (stores.id = brands_stores.store_id)
