@@ -24,9 +24,21 @@ class StoreTest extends PHPUnit_Framework_TestCase
     $this->assertEquals([$newStore], $result);
   }
 
+  function test_update()
+  {
+    $store_name = "Super Store";
+    $test_store = new Store($store_name);
+    $test_store->save();
+    $new_store = "Nordstrom";
+
+    $test_store->update($new_store);
+
+    $this->assertEquals("Nordstrom", $test_store->getName());
+  }
+
   function test_deleteAll()
   {
-    $newStore = new Store ("superstore");
+    $newStore = new Store ("Super Store");
     $newStore->save();
     Store::deleteAll();
     $result = Store::getAll();
@@ -35,8 +47,8 @@ class StoreTest extends PHPUnit_Framework_TestCase
 
   function test_getAll()
   {
-    $newStore = new Store ("superstore");
-    $newStore2 = new Store ("max-mart");
+    $newStore = new Store ("Super Store");
+    $newStore2 = new Store ("Wal Mart");
     $newStore->save();
     $newStore2->save();
     $result = Store::getAll();

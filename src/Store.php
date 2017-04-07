@@ -35,6 +35,18 @@
           return false;
       }
     }
+
+    function update($new_name)
+    {
+          $executed = $GLOBALS['DB']->exec("UPDATE stores SET store_name = '{$new_name}' WHERE id = {$this->getId()};");
+          if ($executed) {
+              $this->setName($new_name);
+              return true;
+          } else {
+              return false;
+          }
+    }
+
     static function getAll()
       {
         $stores = array();
